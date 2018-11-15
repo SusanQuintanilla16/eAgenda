@@ -15,7 +15,13 @@ class CUsuario extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view("usuario/vUsuario");
+		$data['listaUsuarios'] = $this->mUsuario->lista();
+		$this->load->view('usuario/vLista', $data);
+	}
+
+	public function create()
+	{
+		$this->load->view("usuario/vUsuario");	
 	}
 
 	public function ingresar()
