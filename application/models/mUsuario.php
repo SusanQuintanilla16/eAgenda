@@ -47,6 +47,15 @@ class mUsuario extends CI_Model
     	}
 	}
 
+	//Función para obtener usuarios
+	public function lista()
+	{
+		$this->db->select('*');
+		$this->db->from('usuario');
+		$query=$this->db->get();
+		return $query->result();
+	}
+
 	//Sección de Getters y Setters
 	public function getId()
 	{
