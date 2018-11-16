@@ -61,6 +61,7 @@ class CContacto extends CI_Controller
 				$this->mContacto->setTelMovil($this->input->post('txtTelMovil'));
 				$this->mContacto->setEmail($this->input->post('txtEmail'));
 
+
 				//load file helper
 		        $this->load->helper('file');
 		        
