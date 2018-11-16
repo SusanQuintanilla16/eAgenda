@@ -5,6 +5,7 @@
 </head>
 <body>
 <h2>Bienvenido <?php echo $usuario;?> </h2>
+<a href="<?php echo base_url();?>CUsuario/logout" style="text-align: right;">Cerrar Sesión</a>
 <?php
 if($usuario=="admin")
 	{

@@ -78,8 +78,18 @@ class mContacto extends CI_Model
 
 	//Función para actualizar registro
 	public function actualizar($contacto){
+
+		$IdUsuario = 0;
+    	if(null !== $this->session->userdata('idUsuario'))
+    	{
+    		$IdUsuario=$this->session->userdata('idUsuario');
+    	}
+    	else
+    	{
+    		$IdUsuario = 2;
+    	}
     	$ContactoArray=array(
-			'IdUsuario' => '1',
+			'IdUsuario' => $IdUsuario,
 			'Nombres' => $contacto->getNombres(),
 			'Apellidos' => $contacto->getApellidos(),
 			'Direccion' => $contacto->getDireccion(),
