@@ -5,8 +5,19 @@
 </head>
 <body>
 <h2>Bienvenido <?php echo $usuario;?> </h2>
+<?php
+if($usuario != null)
+{
+?>
 <a href="<?php echo base_url();?>CUsuario/logout" style="text-align: right;">Cerrar Sesión</a>
 <?php
+}
+else
+{
+	?>
+<a href="<?php echo base_url();?>CLogin/index" style="text-align: right;">Iniciar Sesión</a>
+	<?php
+}
 if($usuario=="admin")
 	{
 ?>
@@ -40,13 +51,14 @@ if($usuario=="admin")
 		?>
 			<tr>
 				<?php
+					$ruta=str_replace("/index.php", "", base_url());
 					if($row->Foto != "")
 					{
-						echo "<td><a target='_blank' href=".base_url()."photos\\".$row->Foto."\"><img border='0' src=\"".base_url()."photos\\".$row->Foto."\" alt='Imagen asociada' widht='100' height='100'></a></td>\n";
+						echo "<td><a target='_blank' href=\"".$ruta."photos\\".$row->Foto."\"><img border='0' src=\"".$ruta."photos\\".$row->Foto."\" alt='Imagen asociada' widht='50' height='50'></a></td>\n";
 					}
 					else
 					{
-						echo "<td><a target='_blank' href=\"photos\\unknown.jpg\"><img border='0' src=\"photos\\unknown.jpg\" alt='Imagen asociada' widht='100' height='100'></a></td>\n";
+						echo "<td><a target='_blank' href=\"".$ruta."photos\\unknown.jpg\"><img border='0' src=\"".$ruta."photos\\unknown.jpg\" alt='Imagen asociada' widht='50' height='50'></a></td>\n";
 					}
 				?>
 				<td><?php echo $row->Nombres;?></td>

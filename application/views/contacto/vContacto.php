@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<td><label>Foto</label></td>
-				<td><input type="file" name="fileToUpload" id="fileToUpload"></td>
+				<td><input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png, image/jpeg, image/jpg"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Guardar" name="submit"></td>
