@@ -61,15 +61,11 @@ class CContacto extends CI_Controller
 				$this->mContacto->setTelMovil($this->input->post('txtTelMovil'));
 				$this->mContacto->setEmail($this->input->post('txtEmail'));
 
-<<<<<<< HEAD
 
 				//load file helper
 		        $this->load->helper('file');
 		        
 		        if (!empty($_FILES['fileToUpload']['name'])){
-=======
-				if($this->input->post('fileToUpload')){
->>>>>>> 5030b7e1878eb8b6adde847be8d48aea88229804
 		        	//Para subir la imagen
 		        	$mi_imagen = 'fileToUpload';
 				    $config['upload_path'] = "/photos/";
