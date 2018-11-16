@@ -3,8 +3,7 @@
  * Controlador: Contacto
  */
 class CContacto extends CI_Controller
-{
-	
+{		
 	function __construct()
 	{
 		parent::__construct();
@@ -15,8 +14,17 @@ class CContacto extends CI_Controller
 
 	public function index()
 	{
-		$datos['usuario']=$this->session->userdata('usuario');
-		$datos['misContactos'] = $this->mContacto->getContactos(1);
+		$IdUsuario = 0;
+    	if(null !== $this->session->userdata('idUsuario'))
+    	{
+    		$IdUsuario=$this->session->userdata('idUsuario');
+    	}
+    	else
+    	{
+    		$IdUsuario = 2;
+    	}
+		$datos['usuario']=$this->session->userdata('usuario');		
+		$datos['misContactos'] = $this->mContacto->getContactos($IdUsuario);
 		$this->load->view("contacto/vLista",$datos);
 	}
 

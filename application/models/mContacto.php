@@ -26,9 +26,20 @@ class mContacto extends CI_Model
 		$IdUsuario =0;		
 	}
 
+	//Si no se loguea el usuario se guardara como 
+	//contacto de un usuario anonimo
     public function guardar($contacto){
+    	$IdUsuario = 0;
+    	if(null !== $this->session->userdata('idUsuario'))
+    	{
+    		$IdUsuario=$this->session->userdata('idUsuario');
+    	}
+    	else
+    	{
+    		$IdUsuario = 2;
+    	}
     	$ContactoArray=array(
-			'IdUsuario' => '1',
+			'IdUsuario' => $IdUsuario,
 			'Nombres' => $contacto->getNombres(),
 			'Apellidos' => $contacto->getApellidos(),
 			'Direccion' => $contacto->getDireccion(),
