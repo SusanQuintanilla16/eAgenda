@@ -51,5 +51,10 @@ class CUsuario extends CI_Controller
     	}
     }
 
+    public function logout()
+    {
+    	
+    }
+
 }
 ?>
