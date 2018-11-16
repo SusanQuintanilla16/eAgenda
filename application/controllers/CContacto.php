@@ -47,21 +47,43 @@ class CContacto extends CI_Controller
 	            $datos["mensaje"]="Faltan campos";
 	            $this->load->view("contacto/vContacto",$datos);
 	        }
-	        elseif (empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
+	        elseif (empty($this->input->post('txtTelTrabajo')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
 	        {
 	        	$datos["mensaje"]="Agregue al menos un medio de contacto";
 	        	$this->load->view("contacto/vContacto",$datos);
 	        }
 	        else
 	        {
-				$this->mContacto->setNombres($this->input->post('txtNombres'));
+	        	$this->mContacto->setNombres($this->input->post('txtNombres'));
 				$this->mContacto->setApellidos($this->input->post('txtApellidos'));
 				$this->mContacto->setDireccion($this->input->post('txtDireccion'));
 				$this->mContacto->setTelTrabajo($this->input->post('txtTelTrabajo'));
 				$this->mContacto->setTelMovil($this->input->post('txtTelMovil'));
 				$this->mContacto->setEmail($this->input->post('txtEmail'));
 
-				$this->mContacto->guardar($this->mContacto);
+	        	//Para subir la imagen
+	        	$mi_imagen = 'fileToUpload';
+			    $config['upload_path'] = "./photos/";
+			    $config['allowed_types'] = "jpg|jpeg|png";
+			    $config['overwrite']=TRUE;
+			    $config['max_size'] = "50000";
+			    $config['max_width'] = "2000";
+			    $config['max_height'] = "2000";
+
+			    $this->load->library('upload', $config);
+
+			    if (!$this->upload->do_upload($mi_imagen)) {
+			        //*** ocurrio un error
+			        $data['uploadError'] = $this->upload->display_errors();
+			        echo $this->upload->display_errors();
+			        return;
+			    }
+			    else{
+			    	//Si sube la foto, toma el nombre y lo anexa al contacto
+			    	$this->mContacto->setFoto($this->upload->data('file_name'));
+			    }							
+
+				$this->mContacto->guardar($this->mContacto);				
 
 				redirect('CContacto/index','refresh');
 			}
@@ -102,7 +124,7 @@ class CContacto extends CI_Controller
 	            $datos["mensaje"]="Faltan campos";
 	            $this->load->view("contacto/vActualizar",$datos);
 	        }
-	        elseif (empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
+	        elseif (empty($this->input->post('txtTelTrabajo')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
 	        {
 	        	$datos["mensaje"]="Agregue al menos un medio de contacto";
 	        	$this->load->view("contacto/vActualizar",$datos);
