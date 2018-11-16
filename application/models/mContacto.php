@@ -106,6 +106,25 @@ class mContacto extends CI_Model
 	//Función para eliminar registro
 	public function eliminar($id)
 	{
+		$this->db->select('Foto');
+		$this->db->from('contacto');
+		$this->db->where('Id',$id);
+		$query = $this->db->get();
+		if ( $query->num_rows() > 0 )
+    	{
+    		$result = $query->row();
+    		$foto = $result->Foto;
+    		if($foto != null)
+    		{
+    			//Si tiene foto elimina del servidor
+    			$ruta=str_replace("/index.php", "", base_url());
+    			$ruta = $ruta.'photos/'.$foto;
+    			echo $ruta;
+    			$this->load->helper("file"); 
+    			unlink($ruta);
+    		}
+    	}
+
 		$this->db->where('Id', $id);
         $this->db->delete('contacto');
 	} 
