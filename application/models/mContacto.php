@@ -11,11 +11,12 @@ class mContacto extends CI_Model
 	private $TelTrabajo;
 	private $TelMovil;
 	private $Email;
-	private $IdUsuario;
+	private $Foto;
+	private $IdUsuario;	
 
 	function __construct()
 	{
-		parent::__construct();
+		parent::__construct();		
 		$Id = 0;
 		$Nombres = '';
 		$Apellidos = '';
@@ -45,7 +46,8 @@ class mContacto extends CI_Model
 			'Direccion' => $contacto->getDireccion(),
 			'TelTrabajo' => $contacto->getTelTrabajo(),
 			'TelMovil' => $contacto->getTelMovil(),
-			'Email' => $contacto->getEmail()
+			'Email' => $contacto->getEmail(),
+			'Foto' => $contacto->getFoto()
 		);
 		$this->db->insert('contacto',$ContactoArray);
 	}
@@ -109,6 +111,10 @@ class mContacto extends CI_Model
 	} 
 
 	//Sección de getters y setters
+	public function getFoto(){
+		return $this->Foto;
+	}
+
 	public function getId(){
 		return $this->Id;
 	}
@@ -147,6 +153,10 @@ class mContacto extends CI_Model
 
     public function setNombres($Nombres) {
         $this->Nombres = $Nombres;
+    }
+
+    public function setFoto($Foto) {
+        $this->Foto = $Foto;
     }
 
     public function setApellidos($Apellidos) {

@@ -24,6 +24,7 @@ if($usuario=="admin")
 ?>
 <table>
 	<thead>
+		<th>Foto</th>
 		<th>Nombres</th>
 		<th>Apellidos</th>
 		<th>Dirección</th>
@@ -38,6 +39,16 @@ if($usuario=="admin")
 			foreach ($misContactos as $row) {
 		?>
 			<tr>
+				<?php
+					if($row->Foto != "")
+					{
+						echo "<td><a target='_blank' href=".base_url()."photos\\".$row->Foto."\"><img border='0' src=\"".base_url()."photos\\".$row->Foto."\" alt='Imagen asociada' widht='100' height='100'></a></td>\n";
+					}
+					else
+					{
+						echo "<td><a target='_blank' href=\"photos\\unknown.jpg\"><img border='0' src=\"photos\\unknown.jpg\" alt='Imagen asociada' widht='100' height='100'></a></td>\n";
+					}
+				?>
 				<td><?php echo $row->Nombres;?></td>
 				<td><?php echo $row->Apellidos;?></td>
 				<td><?php echo $row->Direccion;?></td>
