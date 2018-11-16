@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * prueba desde rama de ale
  */
 class CUsuario extends CI_Controller
 {
