@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Agenda Electrónica</title>
-</head>
-<body>
-<h2>Bienvenido <?php echo $usuario;?> </h2>
-<?php
-if($usuario != null)
-{
-?>
-<a href="<?php echo base_url();?>CUsuario/logout" style="text-align: right;">Cerrar Sesión</a>
-<?php
-}
-else
-{
-	?>
-<a href="<?php echo base_url();?>CLogin/index" style="text-align: right;">Iniciar Sesión</a>
-	<?php
-}
-if($usuario=="admin")
-	{
-?>
-	<a href="<?php echo base_url();?>CUsuario/index">Ir a Usuarios</a>
-<?php } ?>
+<div class="container">
 <h2>Mis Contactos</h2>
-<center><a href="<?php echo base_url();?>CContacto/add">Nuevo Contacto</a></center><br/>
+<center><a href="<?php echo base_url();?>CContacto/add" class="btn btn-info">Nuevo Contacto</a></center><br/>
 <?php 
 	if($misContactos==null)
 	{
@@ -33,7 +9,8 @@ if($usuario=="admin")
 	else
 	{
 ?>
-<table>
+<div class="table-responsive">
+<table class="table">
 	<thead>
 		<th>Foto</th>
 		<th>Nombres</th>
@@ -67,14 +44,14 @@ if($usuario=="admin")
 				<td><?php echo $row->TelTrabajo;?></td>
 				<td><?php echo $row->TelMovil;?></td>
 				<td><?php echo $row->Email;?></td>
-				<td><a href="<?php echo base_url();?>CContacto/update/<?php echo $row->Id;?>">Actualizar</a></td>
-				<td><a href="<?php echo base_url();?>CContacto/delete/<?php echo $row->Id;?>" onClick="return confirm('¿Está seguro de eliminar contacto?');">Eliminar</a></td>
+				<td><a href="<?php echo base_url();?>CContacto/update/<?php echo $row->Id;?>" class="btn btn-primary">Actualizar</a></td>
+				<td><a href="<?php echo base_url();?>CContacto/delete/<?php echo $row->Id;?>" onClick="return confirm('¿Está seguro de eliminar contacto?');" class="btn btn-danger">Eliminar</a></td>
 			</tr>
 		<?php
 			}
 		?>
 	</tbody>	
 </table>
+</div>
 <?php } ?>
-</body>
-</html>
+</div>

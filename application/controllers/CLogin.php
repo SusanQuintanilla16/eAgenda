@@ -14,8 +14,10 @@ class CLogin extends CI_Controller
 	}
 
 	public function index()
-	{		
-		$this->load->view('vLogin');		
+	{
+		$this->load->view('templates/Header');		
+		$this->load->view('vLogin');
+		$this->load->view('templates/Footer');		
 	}
 
 	public function ingresar()
@@ -31,7 +33,9 @@ class CLogin extends CI_Controller
 	        { 
 	        	//Si la validación es incorrecta
 	            $datos["mensaje"]="Validación incorrecta";
+	            $this->load->view('templates/Header', $datos);	
 	            $this->load->view("vLogin",$datos);
+	            $this->load->view('templates/Footer');
 	        }
 	        else
 	        {
@@ -47,7 +51,9 @@ class CLogin extends CI_Controller
 	            else
 	            {
 	            	$datos["mensaje"] = "Usuario y/o contraseña incorrectos";
+	            	$this->load->view('templates/Header', $datos);	
 	            	$this->load->view("vLogin",$datos);
+	            	$this->load->view('templates/Footer');
 	            }
 	        }	              
     	}
