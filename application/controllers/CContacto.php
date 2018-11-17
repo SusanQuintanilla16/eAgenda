@@ -25,12 +25,16 @@ class CContacto extends CI_Controller
     	}
 		$datos['usuario']=$this->session->userdata('usuario');		
 		$datos['misContactos'] = $this->mContacto->getContactos($IdUsuario);
+		$this->load->view('templates/Header', $datos);
 		$this->load->view("contacto/vLista",$datos);
+		$this->load->view('templates/Footer');
 	}
 
 	public function add()
 	{
+		$this->load->view('templates/Header');
 		$this->load->view('contacto/vContacto');
+		$this->load->view('templates/Footer');
 	}
 
 	public function ingresar()
@@ -46,12 +50,16 @@ class CContacto extends CI_Controller
 	        { 
 	        	//Si la validación es incorrecta
 	            $datos["mensaje"]="Faltan campos";
+	            $this->load->view('templates/Header');
 	            $this->load->view("contacto/vContacto",$datos);
+	            $this->load->view('templates/Footer');
 	        }
 	        elseif (empty($this->input->post('txtTelTrabajo')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
 	        {
 	        	$datos["mensaje"]="Agregue al menos un medio de contacto";
+	        	$this->load->view('templates/Header');
 	        	$this->load->view("contacto/vContacto",$datos);
+	        	$this->load->view('templates/Footer');
 	        }
 	        else
 	        {
@@ -98,7 +106,9 @@ class CContacto extends CI_Controller
 		{
 			$contacto=$this->mContacto->getContactById($id);
 			$datos['contacto']=$contacto;
+			$this->load->view('templates/Header');
 			$this->load->view("contacto/vActualizar",$datos);
+			$this->load->view('templates/Footer');
 		}
 	}
 
@@ -124,12 +134,16 @@ class CContacto extends CI_Controller
 	        { 
 	        	//Si la validación es incorrecta
 	            $datos["mensaje"]="Faltan campos";
+	            $this->load->view('templates/Header');
 	            $this->load->view("contacto/vActualizar",$datos);
+	            $this->load->view('templates/Footer');
 	        }
 	        elseif (empty($this->input->post('txtTelTrabajo')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
 	        {
 	        	$datos["mensaje"]="Agregue al menos un medio de contacto";
+	        	$this->load->view('templates/Header');
 	        	$this->load->view("contacto/vActualizar",$datos);
+	        	$this->load->view('templates/Footer');
 	        }
 	        else
 	        {
