@@ -18,13 +18,20 @@ class mUsuario extends CI_Model
 
 	public function guardar($usuario)
 	{	
-		//Agregar validación que no se puedan ingresar dos usuarios con
-		//el mismo username	
-		$UsuarioArray = array(
-			'Usuario' => $usuario->getUsuario(),
-			'Password' => $usuario->getPassword()
-		);
-		$this->db->insert('usuario',$UsuarioArray);
+		$this->db->select('usuario');
+		$this->db->from('usuario');
+		$this->db->where('usuario',$usuario->getUsuario());	
+		$query = $this->db->get();
+		if($query->num_rows() <= 0)
+    	{
+			$UsuarioArray = array(
+				'Usuario' => $usuario->getUsuario(),
+				'Password' => $usuario->getPassword()
+			);
+			$this->db->insert('usuario',$UsuarioArray);
+			return 1;
+		}
+		else return 0;
 	}
 
 	public function login($usuario)
@@ -57,8 +64,17 @@ class mUsuario extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('usuario');
+		$this->db->where('Id !=',1);
+		$this->db->where('Id !=',2);
 		$query=$this->db->get();
 		return $query->result();
+	}
+
+	//Función para eliminar usuario
+	public function delete($id)
+	{
+		$this->db->where('Id', $id);
+        $this->db->delete('usuario');
 	}
 
 	//Sección de Getters y Setters
