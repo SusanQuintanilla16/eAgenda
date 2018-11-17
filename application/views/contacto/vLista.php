@@ -5,8 +5,19 @@
 </head>
 <body>
 <h2>Bienvenido <?php echo $usuario;?> </h2>
+<?php
+if($usuario != null)
+{
+?>
 <a href="<?php echo base_url();?>CUsuario/logout" style="text-align: right;">Cerrar Sesión</a>
 <?php
+}
+else
+{
+	?>
+<a href="<?php echo base_url();?>CLogin/index" style="text-align: right;">Iniciar Sesión</a>
+	<?php
+}
 if($usuario=="admin")
 	{
 ?>

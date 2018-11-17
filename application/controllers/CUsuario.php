@@ -8,9 +8,19 @@ class CUsuario extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('mUsuario');
-		$this->load->library('form_validation');
-		$this->load->library('encrypt');
+		if($this->session->userdata('admin'))
+		{
+			//Solo el usuario admin puede ver usuarios	
+			$this->load->model('mUsuario');
+			$this->load->library('form_validation');
+			$this->load->library('encrypt');
+		}
+		else
+		{
+			echo '<script language="javascript">alert("';
+			echo "No posee los permisos para acceder a este sitio";
+			echo '");window.location=window.history.back();</script>';
+		}
 	}
 
 	public function index()
@@ -45,10 +55,29 @@ class CUsuario extends CI_Controller
 	        else
 	        {
 	            $this->mUsuario->setUsuario($this->input->post('txtUsuario'));
-	            $this->mUsuario->setPassword($this->encrypt->sha1($this->input->post('txtPassword')));
-	            $this->mUsuario->guardar($this->mUsuario);
+	            $this->mUsuario->setPassword(sha1($this->input->post('txtPassword')));
+	            $value = $this->mUsuario->guardar($this->mUsuario);
+	            if($value)
+	            {
+	            	redirect('CUsuario/index','refresh');
+	            }
+	            else
+	            {
+	            	echo '<script language="javascript">alert("';
+					echo "Este usuario ya está registrado en el sistema";
+					echo '");window.location=window.history.back();</script>';
+	            }
 	        }	              
     	}
+    }
+
+    public function delete($id)
+    {
+    	if($id != null)
+		{
+			$this->mUsuario->delete($id);
+			redirect('CUsuario/index/','refresh');	
+		}
     }
 
     public function logout()

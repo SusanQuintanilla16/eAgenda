@@ -5,10 +5,11 @@
 </head>
 <body>
 <h2>Usuarios registrados</h2>
+<a href="<?php echo base_url();?>CUsuario/create">Crear Usuario</a><br/>
 <?php
 if($listaUsuarios==null)
 {
-	echo "<h3>No hay usuarios registrados en el sistema</h3>"
+	echo "<h3>No hay usuarios registrados en el sistema</h3>";
 }
 else
 {
@@ -20,7 +21,7 @@ else
 	</thead>	
 	<tbody>
 		<?php 
-			foreach ($listaU as $row) {
+			foreach ($listaUsuarios as $row) {
 			?>
 			<tr>
 				<td><?php echo $row->Usuario;?></td>
