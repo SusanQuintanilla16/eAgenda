@@ -9,6 +9,7 @@ class CContacto extends CI_Controller
 		parent::__construct();
 		$this->load->model('mContacto');
 		$this->load->library('form_validation');
+		$this->load->helper('file');
 	}
 
 	public function index()
@@ -60,10 +61,6 @@ class CContacto extends CI_Controller
 				$this->mContacto->setTelTrabajo($this->input->post('txtTelTrabajo'));
 				$this->mContacto->setTelMovil($this->input->post('txtTelMovil'));
 				$this->mContacto->setEmail($this->input->post('txtEmail'));
-
-
-				//load file helper
-		        $this->load->helper('file');
 		        
 		        if (!empty($_FILES['fileToUpload']['name'])){
 		        	//Para subir la imagen
@@ -143,6 +140,35 @@ class CContacto extends CI_Controller
 				$this->mContacto->setTelTrabajo($this->input->post('txtTelTrabajo'));
 				$this->mContacto->setTelMovil($this->input->post('txtTelMovil'));
 				$this->mContacto->setEmail($this->input->post('txtEmail'));
+
+				if (!empty($_FILES['fileToUpload']['name'])){
+
+		        	//Para subir la imagen
+		        	$mi_imagen = 'fileToUpload';
+				    $config['upload_path'] = "./photos/";
+				    $config['allowed_types'] = "jpg|jpeg|png";
+				    $config['max_size'] = "50000";
+				    $config['max_width'] = "2000";
+				    $config['max_height'] = "2000";				    
+
+				    $this->load->library('upload', $config);
+
+				    if (!$this->upload->do_upload($mi_imagen)) {
+				        //*** ocurrio un error
+				        $data['uploadError'] = $this->upload->display_errors();
+				        echo $this->upload->display_errors();
+				        return;
+				    }
+				    else{
+				    	//Si sube la foto, toma el nombre y lo anexa al contacto
+				    	$this->mContacto->setFoto($this->upload->data('file_name'));
+				    }
+			    }
+			    else
+			    {
+			    	$this->mContacto->setFoto($this->input->post('hiddenFoto'));
+			    }
+
 	            $this->mContacto->actualizar($this->mContacto);
 	            
 	            redirect('CContacto/index/','refresh');	            

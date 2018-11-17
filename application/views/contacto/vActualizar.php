@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Actualizar Contacto</h1>	
-	<form method="POST" action="<?php echo base_url();?>CContacto/actualizar">
+	<form method="POST" action="<?php echo base_url();?>CContacto/actualizar" enctype="multipart/form-data">
 		<input type="hidden" name="hiddenId" value="<?php echo $contacto->Id; ?>">
 		<input type="hidden" name="hiddenFoto" value="<?php echo $contacto->Foto; ?>">
 		<?php
