@@ -133,6 +133,8 @@ class CContacto extends CI_Controller
 	        if($this->form_validation->run()==false)
 	        { 
 	        	//Si la validación es incorrecta
+	        	$contacto=$this->mContacto->getContactById($this->input->post('hiddenId'));
+				$datos['contacto']=$contacto;
 	            $datos["mensaje"]="Faltan campos";
 	            $this->load->view('templates/Header');
 	            $this->load->view("contacto/vActualizar",$datos);
@@ -140,6 +142,8 @@ class CContacto extends CI_Controller
 	        }
 	        elseif (empty($this->input->post('txtTelTrabajo')) && empty($this->input->post('txtTelMovil')) && empty($this->input->post('txtEmail'))) 
 	        {
+	        	$contacto=$this->mContacto->getContactById($this->input->post('hiddenId'));
+				$datos['contacto']=$contacto;
 	        	$datos["mensaje"]="Agregue al menos un medio de contacto";
 	        	$this->load->view('templates/Header');
 	        	$this->load->view("contacto/vActualizar",$datos);

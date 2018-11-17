@@ -1,46 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<h1>Ingresar Contacto</h1>
-	<form method="POST" action="<?php echo base_url();?>CContacto/ingresar" enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td><label>Nombres</label></td>
-				<td><input type="text" name="txtNombres"></td>
-			</tr>
-			<tr>
-				<td><label>Apellidos</label></td>
-				<td><input type="text" name="txtApellidos"></td>
-			</tr>
-			<tr>
-				<td><label>Dirección</label></td>
-				<td><input type="text" name="txtDireccion"></td>
-			</tr>
-			<tr>
-				<td><label>Teléfono Trabajo</label></td>
-				<td><input type="text" name="txtTelTrabajo"></td>
-			</tr>
-			<tr>
-				<td><label>Teléfono Móvil</label></td>
-				<td><input type="text" name="txtTelMovil"></td>
-			</tr>
-			<tr>
-				<td><label>Correo Electrónico</label></td>
-				<td><input type="email" name="txtEmail"></td>
-			</tr>
-			<tr>
-				<td><label>Foto</label></td>
-				<td><input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png, image/jpeg, image/jpg"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="Guardar" name="submit"></td>
-			</tr>
-		</table>
-	</form>
-	<h2><?php if(isset($mensaje)) echo $mensaje; ?></h2>
-        <?=validation_errors();?><!--mostrar los errores de validación-->
-</body>
-</html>
+<div class="container">
+	<div class="row">
+		<h2>Ingresar Contacto</h2>
+		<form method="POST" action="<?php echo base_url();?>CContacto/ingresar" enctype="multipart/form-data">
+			<div class="form-group">
+				<div class="col-md-6">
+					<label for="txtNombres">Nombres</label>
+					<input type="text" name="txtNombres" class="form-control">
+				</div>
+				<div class="col-md-6">
+					<label for="txtApellidos">Apellidos</label>
+					<input type="text" name="txtApellidos" class="form-control">
+				</div>
+			</div>		
+			<div class="form-group">
+				<div class="col-md-6">
+					<label for="txtDireccion">Dirección</label>
+					<input type="text" name="txtDireccion" class="form-control">
+				</div>
+				<div class="col-md-3">
+					<label for="txtTelTrabajo">Teléfono Trabajo</label>
+					<input type="text" name="txtTelTrabajo" class="form-control">
+				</div>
+				<div class="col-md-3">
+					<label for="txtTelMovil">Teléfono Móvil</label>
+					<input type="text" name="txtTelMovil" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-6">
+					<label for="txtEmail">Correo Electrónico</label>
+					<input type="email" name="txtEmail" class="form-control">
+				</div>
+				<div class="col-md-6">
+					<label for="fileToUpload">Foto</label>
+					<input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png, image/jpeg, image/jpg">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<br/><center><input type="submit" value="Guardar" name="submit" class="btn btn-default"></center>
+				</div>
+			</div>		
+			</form>
+		</div>
+		<?php if(isset($mensaje)) echo '<br/><div class="alert alert-danger">'.$mensaje.'</div>'; ?>
+		<?=validation_errors();?><!--mostrar los errores de validación-->	
+	</div>

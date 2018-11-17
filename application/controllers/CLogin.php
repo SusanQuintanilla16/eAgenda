@@ -33,7 +33,7 @@ class CLogin extends CI_Controller
 	        { 
 	        	//Si la validación es incorrecta
 	            $datos["mensaje"]="Validación incorrecta";
-	            $this->load->view('templates/Header', $datos);	
+	            $this->load->view('templates/Header');	
 	            $this->load->view("vLogin",$datos);
 	            $this->load->view('templates/Footer');
 	        }

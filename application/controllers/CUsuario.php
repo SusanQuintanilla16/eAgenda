@@ -26,12 +26,16 @@ class CUsuario extends CI_Controller
 	public function index()
 	{
 		$data['listaUsuarios'] = $this->mUsuario->lista();
+		$this->load->view('templates/Header');
 		$this->load->view('usuario/vLista', $data);
+		$this->load->view('templates/Footer');
 	}
 
 	public function create()
 	{
-		$this->load->view("usuario/vUsuario");	
+		$this->load->view('templates/Header');
+		$this->load->view("usuario/vUsuario");
+		$this->load->view('templates/Footer');	
 	}
 
 	public function ingresar()
@@ -50,7 +54,9 @@ class CUsuario extends CI_Controller
 	        { 
 	        	//Si la validación es incorrecta
 	            $datos["mensaje"]="Validación incorrecta";
+	            $this->load->view('templates/Header');
 	            $this->load->view("usuario/vUsuario",$datos);
+	            $this->load->view('templates/Footer');
 	        }
 	        else
 	        {
