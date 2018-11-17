@@ -30,7 +30,7 @@ if(!$this->session->userdata('usuario'))
   <?php } 
   else{?>
   	<li><a href="#"><b>Usuario: </b><?php echo $this->session->userdata('usuario');?></a></li>
-  	<li><a href="<?php echo base_url();?>CUsuario/logout"><span class="glyphicon glyphicon-off" onClick="return confirm('¿Está seguro de cerrar sesión?');"></span> Cerrar Sesión</a></li>
+  	<li><a href="<?php echo base_url();?>CUsuario/logout" onClick="return confirm('¿Está seguro de cerrar sesión?');"><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</a></li>
   <?php }?>
     </ul>
   </div>

@@ -31,11 +31,11 @@
 					$ruta=str_replace("/index.php", "", base_url());
 					if($row->Foto != "")
 					{
-						echo "<td><a target='_blank' href=\"".$ruta."photos\\".$row->Foto."\"><img border='0' src=\"".$ruta."photos\\".$row->Foto."\" alt='Imagen asociada' widht='50' height='50'></a></td>\n";
+						echo "<td><a target='_blank' href=\"".$ruta."photos\\".$row->Foto."\"><img border='0' src=\"".$ruta."photos\\".$row->Foto."\" alt='Foto del Contacto' widht='50' height='50' class='img-circle'></a></td>\n";
 					}
 					else
 					{
-						echo "<td><a target='_blank' href=\"".$ruta."photos\\unknown.jpg\"><img border='0' src=\"".$ruta."photos\\unknown.jpg\" alt='Imagen asociada' widht='50' height='50'></a></td>\n";
+						echo "<td><a target='_blank' href=\"".$ruta."photos\\unknown.jpg\"><img border='0' src=\"".$ruta."photos\\unknown.jpg\" alt='Foto del Contacto' widht='50' height='50' class='img-circle'></a></td>\n";
 					}
 				?>
 				<td><?php echo $row->Nombres;?></td>

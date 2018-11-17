@@ -15,7 +15,7 @@
 				<input type="submit" value="Ingresar" name="submit" class="btn btn-default">				
 			</form>
 			<br/>
-			<?php if(isset($mensaje)) echo '<div class="alert alert-danger">'.$mensaje.'</div>' ?>
+			<?php if(isset($mensaje)) echo '<div class="alert alert-danger">'.$mensaje.'</div>'; ?>
 			        <?=validation_errors();?><!--mostrar los errores de validación-->
 	    </div>
 	</div>
