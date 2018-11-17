@@ -24,7 +24,8 @@ class mContacto extends CI_Model
 		$TelTrabajo = '';
 		$TelMovil = '';
 		$Email = '';
-		$IdUsuario =0;		
+		$IdUsuario =0;	
+		$Foto='';	
 	}
 
 	//Si no se loguea el usuario se guardara como 
@@ -97,13 +98,15 @@ class mContacto extends CI_Model
 			'Direccion' => $contacto->getDireccion(),
 			'TelTrabajo' => $contacto->getTelTrabajo(),
 			'TelMovil' => $contacto->getTelMovil(),
-			'Email' => $contacto->getEmail()
+			'Email' => $contacto->getEmail(),
+			'Foto' =>$contacto->getFoto()
 		);
 		$this->db->where('Id', $contacto->getId());
         $this->db->update('contacto', $ContactoArray);
 	}
 
-	//Función para eliminar registro
+	//Función para eliminar registro y la foto del
+	//registro asociado
 	public function eliminar($id)
 	{
 		$this->db->select('Foto');
@@ -117,9 +120,7 @@ class mContacto extends CI_Model
     		if($foto != null)
     		{
     			//Si tiene foto elimina del servidor
-    			$ruta=str_replace("/index.php", "", base_url());
-    			$ruta = $ruta.'photos/'.$foto;
-    			echo $ruta;
+    			$ruta = './photos/'.$foto;
     			$this->load->helper("file"); 
     			unlink($ruta);
     		}

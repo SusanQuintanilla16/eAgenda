@@ -110,7 +110,7 @@ class CContacto extends CI_Controller
 		if($id != null)
 		{
 			$this->mContacto->eliminar($id);
-			//redirect('CContacto/index/','refresh');	
+			redirect('CContacto/index/','refresh');	
 		}
 	}
 
