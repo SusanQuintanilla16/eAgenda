@@ -68,7 +68,7 @@ class CContacto extends CI_Controller
 		        if (!empty($_FILES['fileToUpload']['name'])){
 		        	//Para subir la imagen
 		        	$mi_imagen = 'fileToUpload';
-				    $config['upload_path'] = "/photos/";
+				    $config['upload_path'] = "./photos/";
 				    $config['allowed_types'] = "jpg|jpeg|png";
 				    $config['max_size'] = "50000";
 				    $config['max_width'] = "2000";

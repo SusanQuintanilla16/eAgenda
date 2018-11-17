@@ -38,7 +38,12 @@ class mUsuario extends CI_Model
     	{
     		$user = $query->row();
     		$this->session->set_userdata('usuario',$user->Usuario);  
-    		$this->session->set_userdata('idUsuario',$user->Id);	
+    		$this->session->set_userdata('idUsuario',$user->Id);
+    		if($user->Usuario=='admin')
+    		{
+    			//Si es admin, pone bandera
+    			$this->session->set_userdata('admin',1);
+    		}	
     		return 1;
     	}
     	else
