@@ -84,16 +84,7 @@ class CUsuario extends CI_Controller
 			$this->mUsuario->delete($id);
 			redirect('CUsuario/index/','refresh');	
 		}
-    }
-
-    public function logout()
-    {
-    	$keys = array('usuario', 'idUsuario');
-		$this->session->unset_userdata($keys);
-		$this->session->sess_destroy();
-		ob_clean();
-    	redirect(base_url());
-    }
+    }    
 
 }
 ?>

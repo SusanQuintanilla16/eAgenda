@@ -28,7 +28,7 @@
 		?>
 			<tr>
 				<?php
-					$ruta=str_replace("/index.php", "", base_url());
+					$ruta=base_url();
 					if($row->Foto != "")
 					{
 						echo "<td><a target='_blank' href=\"".$ruta."photos\\".$row->Foto."\"><img border='0' src=\"".$ruta."photos\\".$row->Foto."\" alt='Foto del Contacto' widht='50' height='50' class='img-circle'></a></td>\n";

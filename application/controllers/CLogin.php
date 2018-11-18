@@ -59,5 +59,13 @@ class CLogin extends CI_Controller
     	}
 	}
 
+	public function logout()
+    {
+    	$keys = array('usuario', 'idUsuario');
+		$this->session->unset_userdata($keys);
+		$this->session->sess_destroy();
+    	redirect(base_url());
+    }
+
 }
 ?>
